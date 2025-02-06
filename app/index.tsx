@@ -30,9 +30,9 @@ export default function Index() {
         <Text
           style={{
             fontSize: 30,
-            fontWeight: "bold",
             textAlign: "center",
             color: Colors.WHITE,
+            fontFamily: "outfit-bold",
           }}
         >
           Welcome to AICourseApp
@@ -43,6 +43,7 @@ export default function Index() {
             color: Colors.WHITE,
             textAlign: "center",
             marginTop: 25,
+            fontFamily: "outfit",
           }}
         >
           Learn a programming language, build a project, and get a job.
@@ -65,25 +66,26 @@ export default function Index() {
             },
           ]}
         >
-          <Text style={[styles.buttonText, {color: Colors.WHITE}]}>Already have an account?</Text>
+          <Text style={[styles.buttonText, { color: Colors.WHITE }]}>
+            Already have an account?
+          </Text>
         </View>
       </View>
     </View>
   );
 }
 
-
 const styles = StyleSheet.create({
- button:{
-padding: 15,
-backgroundColor: Colors.WHITE,
-marginTop: 30,
-borderRadius: 10,
-},
-buttonText:{
-color: Colors.PRIMARY,
-fontWeight: "bold",
-textAlign: "center",
-fontSize: 18,
-}
+  button: {
+    padding: 15,
+    backgroundColor: Colors.WHITE,
+    marginTop: 30,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: Colors.PRIMARY,
+    fontFamily: "outfit",
+    textAlign: "center",
+    fontSize: 18,
+  },
 });
