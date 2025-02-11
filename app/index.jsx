@@ -1,10 +1,25 @@
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../constant/Colors";
 import { useRouter } from "expo-router";
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth, db } from "./../config/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import { useContext } from "react";
+import { UserDetailContext } from "./../context/UserDetailsContext";
+
 
 export default function Index() {
 
 const router = useRouter();
+  const { userDetail, setUserDetail } = useContext(UserDetailContext);
+onAuthStateChanged(auth, async(user) => {
+  if (user) {
+    console.log(user);
+    const result = await getDoc(doc(db, "users", user?.email));
+    setUserDetail(result.data());
+    router.replace("/(tabs)/home");
+  }
+});
 
   return (
     <View
@@ -56,7 +71,7 @@ const router = useRouter();
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("/auth/signIn")}
+          onPress={() => router.push("/auth/signUp")}
         >
           <Text style={[styles.buttonText, { color: Colors.PRIMARY }]}>
             Get Started
@@ -72,7 +87,7 @@ const router = useRouter();
               borderColor: Colors.WHITE,
             },
           ]}
-          onPress={() => router.push("/auth/signUp")}
+          onPress={() => router.push("/auth/signIn")}
         >
           <Text style={[styles.buttonText, { color: Colors.WHITE }]}>
             Already have an account?
