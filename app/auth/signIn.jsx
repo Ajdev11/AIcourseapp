@@ -16,10 +16,7 @@ import { auth, db } from "./../../config/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { UserDetailContext } from "./../../context/UserDetailsContext";
 import { useContext } from "react";
-// Correct import from 'react-native' instead of 'react-native-web'
 import { ActivityIndicator } from 'react-native';
-
-
 
 export default function SignIn() {
   const router = useRouter();
@@ -27,11 +24,6 @@ export default function SignIn() {
   const [password, setPassword] = useState();
   const {userDetail, setUserDetail} = useContext(UserDetailContext);
   const [loaading, setLoading] = useState(false);
-
-
-
-
-
 
   const onSignInClick = () => {
     setLoading(true);
@@ -52,8 +44,6 @@ export default function SignIn() {
   };
 
   const getUserDetails = async () => {
-    //get user details from db
-    //set user details to context
     const result = await getDoc(doc(db, "users", email));
     console.log(result.data());
     setUserDetail(result.data());
