@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // Remove initializeAuth and persistence
 import { getFirestore } from "firebase/firestore";
+import {
+  getAuth,
+  initializeAuth,
+  getReactNativePersistence,
+} from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Platform } from "react-native"; // Import Platform for detection
 
 // Your Firebase config
 const firebaseConfig = {
@@ -15,5 +21,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app); // No more persistence
+
+// Conditionally initialize Auth for React Native & Web
+export const auth =
+  Platform.OS === "web"
+    ? getAuth(app) // Default auth for Web
+    : initializeAuth(app, {
+        persistence: getReactNativePersistence(AsyncStorage),
+      });
+
 export const db = getFirestore(app);

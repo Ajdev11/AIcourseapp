@@ -70,10 +70,11 @@ export default function AddCourse() {
         await setDoc(doc(db, 'Courses', Date.now().toString()), {
           ...course,
           createdOn: new Date(),
-          createdBy: userDetail.email,
+          createdBy: userDetail?.email,
         });
       });
       router.push("/(tabs)/home");
+        // router.push("/auth/signIn");
       setLoading(false);
     } catch (e) {
       setLoading(false);

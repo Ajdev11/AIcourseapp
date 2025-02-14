@@ -14,4 +14,8 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
 , "app/index.jsx"  ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 65da857 (debugged__savedToDB_Courses)
