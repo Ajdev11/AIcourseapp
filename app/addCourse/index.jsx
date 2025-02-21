@@ -75,6 +75,7 @@ export default function AddCourse() {
       });
       router.push("/(tabs)/home");
         // router.push("/auth/signIn");
+        // router.push("/auth/signUp");
       setLoading(false);
     } catch (e) {
       setLoading(false);
