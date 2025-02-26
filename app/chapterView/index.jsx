@@ -30,7 +30,7 @@ export default function ChapterView() {
 
     // Navigate back
 
-    router.back();
+    router.replace('/courseView/'+docid);
   };
 
   return (
