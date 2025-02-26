@@ -67,10 +67,12 @@ export default function AddCourse() {
       console.log(courses);
       //save course info to DB
       courses?.forEach(async (course) => {
-        await setDoc(doc(db, 'Courses', Date.now().toString()), {
+        const docid = Date.now().toString();
+        await setDoc(doc(db, 'Courses', docid), {
           ...course,
           createdOn: new Date(),
-          createdBy: userDetail?.email,
+          createdBy: userDetail?.email ?? '',
+          docid: docid
         });
       });
       router.push("/(tabs)/home");

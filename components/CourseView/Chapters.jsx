@@ -1,10 +1,22 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Colors from "../../constant/Colors";
-
+import { useRouter } from "expo-router";
 
 export default function Chapters({ course }) {
+
+  const router = useRouter();
+  const isChapterCompleted = (index) => {
+    const isCompleted = course?.completedChapter?.find(item=>item==index);
+    return isCompleted?true:false;
+  }
+
+
+
+
+
+
   return (
     <View style={{ padding: 20 }}>
       <Text
@@ -20,7 +32,17 @@ export default function Chapters({ course }) {
       <FlatList
         data={course?.chapters}
         renderItem={({ item, index }) => (
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              router.push({
+                pathname: "/chapterView",
+                params: {
+                  chapterParams: JSON.stringify(item),
+                  docid: course?.docid,
+                  chapterIndex: index,
+                },
+              });
+            }}
             style={{
               padding: 10,
               borderWidth: 1,
@@ -42,8 +64,13 @@ export default function Chapters({ course }) {
               <Text style={styles.chapterText}>{index + 1}</Text>
               <Text style={styles.chapterText}>{item.chapterName}</Text>
             </View>
-            <Ionicons name="play" size={20} color={Colors.PRIMARY} />
-          </View>
+
+            {isChapterCompleted(index) ? (
+              <Ionicons name="checkmark-circle" size={20} color={Colors.GREEN} />
+            ) : (
+              <Ionicons name="play" size={20} color={Colors.PRIMARY} />
+            )}
+          </TouchableOpacity>
         )}
       />
     </View>
