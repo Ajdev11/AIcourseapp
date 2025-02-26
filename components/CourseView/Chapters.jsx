@@ -1,21 +1,21 @@
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Colors from "../../constant/Colors";
 import { useRouter } from "expo-router";
 
 export default function Chapters({ course }) {
-
   const router = useRouter();
   const isChapterCompleted = (index) => {
-    const isCompleted = course?.completedChapter?.find(item=>item==index);
-    return isCompleted?true:false;
-  }
-
-
-
-
-
+    const isCompleted = course?.completedChapter?.find((item) => item == index);
+    return isCompleted ? true : false;
+  };
 
   return (
     <View style={{ padding: 20 }}>
@@ -66,7 +66,11 @@ export default function Chapters({ course }) {
             </View>
 
             {isChapterCompleted(index) ? (
-              <Ionicons name="checkmark-circle" size={20} color={Colors.GREEN} />
+              <Ionicons
+                name="checkmark-circle"
+                size={20}
+                color={Colors.GREEN}
+              />
             ) : (
               <Ionicons name="play" size={20} color={Colors.PRIMARY} />
             )}

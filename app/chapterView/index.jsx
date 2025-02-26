@@ -8,11 +8,6 @@ import Button from "../../components/Shared/Button";
 import { db } from "../../config/firebaseConfig";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
-
-
-
-
-
 export default function ChapterView() {
   const { chapterParams, docid, chapterIndex } = useLocalSearchParams();
   const chapters = JSON.parse(chapterParams);
@@ -24,36 +19,28 @@ export default function ChapterView() {
     return percentage;
   };
 
-
-
- const onChapterComplete = async() => {
+  const onChapterComplete = async () => {
     //saved chapetr completed
-    setLoader(true)
-    await updateDoc(doc(db, 'Courses', docid), {
-        completedChapter: arrayUnion(chapterIndex)
-    })
+    setLoader(true);
+    await updateDoc(doc(db, "Courses", docid), {
+      completedChapter: arrayUnion(chapterIndex),
+    });
 
-setLoader(false);
+    setLoader(false);
 
     // Navigate back
 
-router.back();
-
-
-
-    }
-
-
-
-
-
+    router.back();
+  };
 
   return (
     <View
       style={{
-        padding: 40,
         flex: 1,
         backgroundColor: Colors.WHITE,
+        paddingHorizontal: 20,
+        paddingTop: 60,
+        alignItems: "center",
       }}
     >
       <Progress.Bar
@@ -62,7 +49,7 @@ router.back();
       />
       <View
         style={{
-          margintop: 20,
+          marginTop: 20,
         }}
       >
         <Text
@@ -104,7 +91,7 @@ router.back();
           position: "absolute",
           bottom: 15,
           width: "100%",
-          left: 40,
+          left: 20,
         }}
       >
         {chapters?.content?.length - 1 != currentPage ? (
@@ -123,9 +110,6 @@ router.back();
     </View>
   );
 }
-
-
-
 
 const styles = StyleSheet.create({
   codeExampleText: {

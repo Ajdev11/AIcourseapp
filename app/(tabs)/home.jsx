@@ -52,7 +52,6 @@ export default function Home() {
               <CourseProgress courseList={courseList} />
               <PracticeSection />
               <CourseList courseList={courseList} />
-              <CourseList courseList={courseList} />
             </View>
           )}
         </View>
