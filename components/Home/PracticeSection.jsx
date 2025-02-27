@@ -14,6 +14,7 @@ export default function PracticeSection() {
         style={{
           fontFamily: "outfit-bold",
           fontSize: 25,
+            color: Colors.WHITE
         }}
       >
         Practice

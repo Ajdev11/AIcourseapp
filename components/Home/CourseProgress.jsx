@@ -27,6 +27,7 @@ const GetCompletedChapters=(course)=>{
         style={{
           fontFamily: "outfit-bold",
           fontSize: 25,
+            color: Colors.WHITE
         }}
       >
         Progress
@@ -41,7 +42,7 @@ const GetCompletedChapters=(course)=>{
             style={{
               margin: 7,
               padding: 7,
-              backgroundColor: Colors.BG_GRAY,
+              backgroundColor: Colors.WHITE,
               borderRadius: 15,
               width: 280,
             }}

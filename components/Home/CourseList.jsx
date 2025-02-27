@@ -19,6 +19,7 @@ export default function CourseList({ courseList }) {
         style={{
           fontFamily: "outfit-bold",
           fontSize: 25,
+            color: Colors.WHITE
         }}
       >
         Courses
@@ -83,7 +84,7 @@ export default function CourseList({ courseList }) {
 const styles = StyleSheet.create({
   courseContainer: {
     padding: 10,
-    backgroundColor: Colors.BG_GRAY,
+    // backgroundColor: Colors.WHITE,
     margin: 6,
     borderRadius: 15,
     width: 240
