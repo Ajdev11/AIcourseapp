@@ -14,12 +14,14 @@ import CourseProgress from "../../components/Home/CourseProgress";
 export default function Home() {
   const { userDetail, setUserDetail } = useContext(UserDetailContext);
   const [courseList, setCourseList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     userDetail && GetCourseList();
   }, [userDetail]);
 
   const GetCourseList = async () => {
+    setLoading(true);
     setCourseList([]);
     const q = query(
       collection(db, "Courses"),
@@ -30,10 +32,13 @@ export default function Home() {
       // console.log("-------", doc.data());
       setCourseList((prev) => [...prev, doc.data()]);
     });
+    setLoading(false);
   };
 
   return (
     <FlatList
+    onRefresh={()=>GetCourseList()}
+    refreshing={loading}
       data={[]}
       ListHeaderComponent={
         <View
